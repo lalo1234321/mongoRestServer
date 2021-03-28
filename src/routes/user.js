@@ -25,6 +25,7 @@ router.put('/updateUser',(req, res) => {
     });
 })
 
+
 router.delete('/deleteUser',(req, res) => {
     let {userName,password} = req.body;
     res.status(200).json({
@@ -33,5 +34,9 @@ router.delete('/deleteUser',(req, res) => {
         password
     });
 })
+
+
+
+console.log('nada');
 
 module.exports = router;
