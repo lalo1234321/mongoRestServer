@@ -25,4 +25,13 @@ router.put('/updateUser',(req, res) => {
     });
 })
 
+router.delete('/deleteUser',(req, res) => {
+    let {userName,password} = req.body;
+    res.status(200).json({
+        message:'eliminación correcta',
+        userName,
+        password
+    });
+})
+
 module.exports = router;
