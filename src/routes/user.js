@@ -8,4 +8,12 @@ router.get('/user',(req,res) => {
     });
 });
 
+router.post('/createUser', (req,res) => {
+    let {userName,password} = req.body;
+    res.status(200).json({
+        userName,
+        password
+    });
+});
+
 module.exports = router;
