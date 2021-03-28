@@ -25,4 +25,6 @@ router.put('/updateUser',(req, res) => {
     });
 })
 
+
+console.log('nada');
 module.exports = router;
