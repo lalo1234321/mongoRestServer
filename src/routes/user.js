@@ -16,4 +16,13 @@ router.post('/createUser', (req,res) => {
     });
 });
 
+router.put('/updateUser',(req, res) => {
+    let {userName,password} = req.body;
+    res.status(200).json({
+        message:'modificación correcta',
+        userName,
+        password
+    });
+})
+
 module.exports = router;
