@@ -1,6 +1,8 @@
 const {Router} = require('express');
 const router = Router();
 const User = require('../models/user.js');
+const mongo = require('mongoose');
+require('../config/config.js');
 
 router.get('/user',(req,res) => {
     res.status(200).json({
@@ -27,6 +29,30 @@ router.post('/createUser', (req,res) => {
     })
 });
 
+router.get('/getUser', (req, res) => 
+{
+    let arr=[];
+    mongo.connect(process.env.URI_DB, (err, db) =>{
+        if(!err)
+        {
+            const cursor = db.collection('users').find();
+            cursor.forEach((doc, err)=>
+            {
+                if(!err)
+                {
+                    arr.push(doc);
+                }
+            },() => 
+            {
+               db.close();
+               res.status(200).json({
+                   resultado: arr
+               });
+            });
+        }
+    });
+});
+
 router.put('/updateUser',(req, res) => {
     let {userName,password} = req.body;
     res.status(200).json({
@@ -45,7 +71,6 @@ router.delete('/deleteUser',(req, res) => {
         password
     });
 })
-
 
 
 console.log('nada');
