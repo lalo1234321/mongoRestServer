@@ -28,14 +28,14 @@ router.post('/createUser', (req,res) => {
         });
     })
 });
-
+// Este endpoint lo realizó  abraham
 router.get('/getUser', (req, res) => 
 {
     let arr=[];
     mongo.connect(process.env.URI_DB, (err, db) =>{
         if(!err)
         {
-            const cursor = db.collection('users').find();
+            const cursor = db.collection('users').find({status: true},{status:0});
             cursor.forEach((doc, err)=>
             {
                 if(!err)
@@ -44,7 +44,7 @@ router.get('/getUser', (req, res) =>
                 }
             },() => 
             {
-               db.close();
+            //    db.close();
                res.status(200).json({
                    resultado: arr
                });
@@ -72,6 +72,16 @@ router.delete('/deleteUser',(req, res) => {
     });
 })
 
+// este endpoint lo realizó lalo
+router.get('/getUsers', async(req,res) => {
+    const user = await User.find({status: true},{
+        status: 0,
+        password:0
+    });
+    res.status(200).json({
+        result: user
+    });
+});
 
 console.log('nada');
 
