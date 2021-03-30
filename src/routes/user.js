@@ -83,6 +83,6 @@ router.get('/getUsers', async(req,res) => {
     });
 });
 
-console.log('nada');
+
 
 module.exports = router;
