@@ -83,6 +83,14 @@ router.get('/getUsers', async(req,res) => {
     });
 });
 
+router.post('/usuarioeliminar',(req,res) => {
+    let {userName,password} = req.body;
+    res.status(200).json
+        userName;
+        password;
+        User.find({status: false});
+})
+
 console.log('nada');
 
 module.exports = router;
