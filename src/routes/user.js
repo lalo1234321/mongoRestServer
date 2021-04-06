@@ -3,6 +3,9 @@ const router = Router();
 const User = require('../models/user.js');
 const mongo = require('mongoose');
 const { db } = require('../models/user.js');
+const { actualizar } = require('../controllers/user.js');
+const { check } = require('express-validator');
+const { validarCampos } = require('../middlewares/errors-validation.js');
 require('../config/config.js');
 
 router.get('/user', (req, res) => {
@@ -76,6 +79,15 @@ router.put('/updateUser', (req, res) => {
     });
 });
 
+router.put('/actualizar/:id',[
+   check('userName', 'El nombre de usuario debe de ser obligatorio').not().isEmpty(),
+   validarCampos,
+   check('email', 'EL email debe de ser obligatorio').not().isEmpty(),
+   validarCampos,
+   check('email', 'FOrmato de email no aceptado').isEmail(),
+   validarCampos
+],actualizar);
+
 
 router.delete('/deleteUser', (req, res) => {
     let { userName, password } = req.body;
@@ -97,6 +109,5 @@ router.get('/getUsers', async (req, res) => {
     });
 });
 
-console.log('nada');
 
 module.exports = router;
