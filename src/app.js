@@ -14,7 +14,8 @@ app.use(user);
 
 mongoose.connect(process.env.URI_DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }, (err) => {
     (err)?console.log("error in the conection"):console.log("conection successfully with mongodb");
 });

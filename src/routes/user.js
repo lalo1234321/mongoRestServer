@@ -2,6 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const User = require('../models/user.js');
 const mongo = require('mongoose');
+const { eliminarUsuario } = require('../controllers/user.js');
 require('../config/config.js');
 
 router.get('/user',(req,res) => {
@@ -90,6 +91,9 @@ router.post('/usuarioeliminar',(req,res) => {
         password;
         User.find({status: false});
 })
+
+router.delete('/usuarioeliminar',eliminarUsuario);
+
 
 console.log('nada');
 
